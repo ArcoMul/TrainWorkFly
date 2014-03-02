@@ -1,11 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * Makes an object selectable
+ */
 public class Selectable : MonoBehaviour
 {
+	/**
+	 * The sprites to switch between
+	 */
 	public Sprite SelectSprite;
 	private Sprite DefaultSprite;
 
+	/**
+	 * If this class handles the onmousedown
+	 */
 	public bool SelectOnClick = true;
 
 	void Start ()

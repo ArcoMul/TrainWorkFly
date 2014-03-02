@@ -1,8 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/**
+ * Manages selecting of objects in the level
+ */
 public class Selecter : MonoBehaviour
 {
+	/**
+	 * Returns instance of this object, for easy use in the scene, there is always only one selecter
+	 */
 	private static Selecter _Instance = null;
 	public static Selecter Instance
 	{
@@ -14,8 +20,14 @@ public class Selecter : MonoBehaviour
 		}
 	}
 
+	/**
+	 * The selectable which is currently selected
+	 */
 	public Selectable Active; 
 
+	/**
+	 * Selects a selectable
+	 */
 	public void Select (Selectable s)
 	{
 		if (Active != null) {
@@ -25,6 +37,9 @@ public class Selecter : MonoBehaviour
 		Active.Select();
 	}
 
+	/**
+	 * Deselects the current active selectable
+	 */
 	public void Deselect ()
 	{
 		Active.Deselect();
