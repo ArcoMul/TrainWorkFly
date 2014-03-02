@@ -1,0 +1,10 @@
+# Unity
+Library
+Temp
+Builds
+*.csproj
+*.pidb
+*.unityproj
+*.sln
+*.userprefs
+*.swp
