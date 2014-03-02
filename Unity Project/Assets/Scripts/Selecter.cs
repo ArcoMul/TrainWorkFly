@@ -14,7 +14,7 @@ public class Selecter : MonoBehaviour
 		}
 	}
 
-	private Selectable Active; 
+	public Selectable Active; 
 
 	public void Select (Selectable s)
 	{

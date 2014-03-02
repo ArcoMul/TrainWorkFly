@@ -6,6 +6,8 @@ public class Selectable : MonoBehaviour
 	public Sprite SelectSprite;
 	private Sprite DefaultSprite;
 
+	public bool SelectOnClick = true;
+
 	void Start ()
 	{
 		DefaultSprite = GetComponent<SpriteRenderer>().sprite;
@@ -23,6 +25,9 @@ public class Selectable : MonoBehaviour
 
 	void OnMouseDown ()
 	{
-		Selecter.Instance.Select (this);
+		if (SelectOnClick) {
+			Selecter.Instance.Select (this);
+		}
 	}
+	
 }
