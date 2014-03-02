@@ -12,7 +12,10 @@ public class Building : MonoBehaviour
 	 */
 	void OnMouseDown ()
 	{
-		Worker worker = Selecter.Instance.Active.GetComponent<Worker>();
+		Worker worker = null;
+		if (Selecter.Instance.Active != null) {
+			worker = Selecter.Instance.Active.GetComponent<Worker>();
+		}
 		if (worker == null)
 		{
 			Selecter.Instance.Select (GetComponent<Selectable>());
