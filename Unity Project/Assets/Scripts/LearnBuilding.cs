@@ -18,10 +18,11 @@ public class LearnBuilding : Building {
 		List<int> removedindexes = new List<int>();
 		int index = 0;
 		foreach (Worker w in Workers) {
+			float timetolearn = TimeToLearnSkill * GetWorkerSkill(w);
 			float time = (float)DateTime.Now.Subtract(WorkerTimeOfArrival[index]).TotalSeconds;
-			w.LearnBar.SetPercentage(time / TimeToLearnSkill );
+			w.LearnBar.SetPercentage(time / timetolearn);
 
-			if(time >= TimeToLearnSkill)
+			if(time >= timetolearn)
 			{
 				w.SwitchState(Worker.States.WalkingFromBuilding);
 				removedindexes.Add(index);
@@ -40,5 +41,14 @@ public class LearnBuilding : Building {
 			Workers.RemoveAt(i);
 			WorkerTimeOfArrival.RemoveAt(i);
 		}
+	}
+
+	private int GetWorkerSkill (Worker w) {
+		if (Type == LearnType.Repair) {
+			return w.RepairSkill;
+		} else if (Type == LearnType.Paint) {
+			return w.PaintSkill;
+		}
+		return 1;
 	}
 }
