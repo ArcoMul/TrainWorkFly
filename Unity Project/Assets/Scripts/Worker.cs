@@ -33,6 +33,12 @@ public class Worker : MonoBehaviour
 
 	public LearnBar LearnBar;
 
+	public TextMesh PaintText;
+	public TextMesh RepairText;
+
+	public int PaintSkill;
+	public int RepairSkill;
+
 	void Start ()
 	{
 		SpawnPosition = transform.position;
@@ -86,7 +92,6 @@ public class Worker : MonoBehaviour
 		} else if (State == States.WalkingFromBuilding) {
 			LearnBar.gameObject.SetActive(false);
 			WalkToPosition = SpawnPosition;
-			Debug.Log("WalkToPosition: " + WalkToPosition);
 		} else if (State == States.Learning) {
 			StartIdlePosition = transform.position;
 			WalkGoal.AddWorker(this);
@@ -101,6 +106,18 @@ public class Worker : MonoBehaviour
 	{
 		WalkGoal = building;
 		SwitchState (States.WalkingToBuilding);
+	}
+
+	public void AddPaintLevel(int amount)
+	{
+		PaintSkill += amount;
+		PaintText.text = "Paint: " + PaintSkill;
+	}
+
+	public void AddRepairLevel(int amount)
+	{
+		RepairSkill += amount;
+		RepairText.text = "Repair: " + RepairSkill;
 	}
 	
 }
