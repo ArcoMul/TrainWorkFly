@@ -8,7 +8,7 @@ using System;
  */
 public class Building : MonoBehaviour
 {
-	public int walkingWorkers;
+	public int WalkingWorkers;
 	public List<Worker> Workers;
 	public List<DateTime> WorkerTimeOfArrival;
 
@@ -42,7 +42,7 @@ public class Building : MonoBehaviour
 	 */
 	public Vector3 GetRestPosition ()
 	{
-		return transform.position - new Vector3 ((walkingWorkers * 0.6f) + 0.6f, 0, 0);
+		return transform.position - new Vector3 ((Workers.Count * 0.6f) + 0.6f, 0, 0);
 	}
 
 	public void AddWorker(Worker worker)

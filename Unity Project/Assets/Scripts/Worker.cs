@@ -15,12 +15,6 @@ public class Worker : MonoBehaviour
 	public States State = States.Idle;
 
 	/**
-	 * The start position when going idle, the worker moves around a bit on
-	 * this spot
-	 */
-	private Vector3 StartIdlePosition;
-
-	/**
 	 * What is the goal to walk to for this worker
 	 */
 	private Building WalkGoal;
@@ -45,6 +39,9 @@ public class Worker : MonoBehaviour
 		// We start in Idle
 		SwitchState (States.Idle);
 		LearnBar.gameObject.SetActive(false);
+
+		AddPaintLevel (1);
+		AddRepairLevel (1);
 	}
 
 	void Update ()
@@ -52,13 +49,13 @@ public class Worker : MonoBehaviour
 		// On Idle move around a bit to make the scene look alive
 		if (State == States.Idle)
 		{
-			transform.position = StartIdlePosition - new Vector3(2.5f * Time.deltaTime, 2.5f * Time.deltaTime, 0) + new Vector3(Random.value * 5f * Time.deltaTime, Random.value * 5f * Time.deltaTime, 0);
+			transform.position = GetWalkToPosition(State) - new Vector3(2.5f * Time.deltaTime, 2.5f * Time.deltaTime, 0) + new Vector3(Random.value * 5f * Time.deltaTime, Random.value * 5f * Time.deltaTime, 0);
 		}
 		// On walking, walk to the goal
 		else if (State == States.WalkingToBuilding || State == States.WalkingFromBuilding)
 		{
 			// Get the direction from the worker to the building and reset the z axis
-			Vector3 Direction = WalkToPosition - transform.position;
+			Vector3 Direction = GetWalkToPosition(State) - transform.position;
 			Direction = new Vector3(Direction.x, Direction.y, 0);
 
 			// Calculate the movement for this frame and add this to the position
@@ -90,31 +87,47 @@ public class Worker : MonoBehaviour
 		State = state;
 		if (State == States.Idle)
 		{
-			StartIdlePosition = transform.position;
 		}
 		else if (State == States.WalkingToBuilding)
 		{
-			WalkGoal.walkingWorkers += 1;
-			WalkToPosition = WalkGoal.GetRestPosition ();
+			WalkGoal.WalkingWorkers++;
 		}
 		else if (State == States.WalkingFromBuilding)
 		{
+			WalkGoal.WalkingWorkers--;
 			LearnBar.gameObject.SetActive(false);
-			WalkToPosition = SpawnPosition;
 		}
 		else if (State == States.Learning)
 		{
-			StartIdlePosition = transform.position;
 			WalkGoal.AddWorker(this);
 			LearnBar.gameObject.SetActive(true);
 		}
 		else if (State == States.Working)
 		{
-			StartIdlePosition = transform.position;
 			WalkGoal.AddWorker(this);
 		}
     }
 
+	public Vector3 GetWalkToPosition (States state) 
+	{
+		Vector3 result = new Vector3(0.0f, 0.0f, 0.0f);
+
+		State = state;
+		if (State == States.Idle){
+			result = SpawnPosition;
+		}else if (State == States.WalkingToBuilding){
+			result =  WalkGoal.GetRestPosition ();
+		}else if (State == States.WalkingFromBuilding){
+			result =  SpawnPosition;
+		}else if (State == States.Learning){
+			result =  transform.position;
+		}else if (State == States.Working){
+			result =  transform.position;
+		}
+
+		return result;
+	}
+	
 	/**
 	 * New goal for the worker, save the goal and switch to walking
 	 */
