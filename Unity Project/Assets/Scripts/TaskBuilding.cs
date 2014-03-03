@@ -46,10 +46,7 @@ public class TaskBuilding : Building
 		// If the worked time is bigger than than the needed time to finish the task, dismiss the task and workers
 		if(TotalTimeWorkedOnTask >= TimeToFinishTask)
 		{
-			foreach (Worker w in Workers) {
-				w.SwitchState(Worker.States.WalkingFromBuilding);
-			}
-			Destroy(gameObject);
+			FinishTask();
 		}
 	}
 
@@ -60,5 +57,14 @@ public class TaskBuilding : Building
 			return w.PaintSkill;
 		}
 		return 1;
+	}
+
+	private void FinishTask ()
+	{
+		foreach (Worker w in Workers) {
+			w.SwitchState(Worker.States.WalkingFromBuilding);
+		}
+		Destroy(gameObject);
+		Score.Instance.Points++;
 	}
 }
