@@ -11,7 +11,7 @@ public class Worker : MonoBehaviour
 	/**
 	 * Different states for the worker
 	 */
-	public enum States {Idle = 1, Walking = 2}
+	public enum States {Idle = 1, WalkingToBuilding = 2, WalkingFromBuilding = 3, Learning = 4, Repairing = 5}
 	public States State = States.Idle;
 
 	/**
@@ -25,10 +25,20 @@ public class Worker : MonoBehaviour
 	 */
 	private Building WalkGoal;
 
+	/**
+	 * Walk to position
+	 */
+	private Vector3 WalkToPosition;
+	private Vector3 SpawnPosition;
+
+	public LearnBar LearnBar;
+
 	void Start ()
 	{
+		SpawnPosition = transform.position;
 		// We start in Idle
 		SwitchState (States.Idle);
+		LearnBar.gameObject.SetActive(false);
 	}
 
 	void Update ()
@@ -39,10 +49,10 @@ public class Worker : MonoBehaviour
 			transform.position = StartIdlePosition - new Vector3(2.5f * Time.deltaTime, 2.5f * Time.deltaTime, 0) + new Vector3(Random.value * 5f * Time.deltaTime, Random.value * 5f * Time.deltaTime, 0);
 		}
 		// On walking, walk to the goal
-		else if (State == States.Walking)
+		else if (State == States.WalkingToBuilding || State == States.WalkingFromBuilding)
 		{
 			// Get the direction from the worker to the building and reset the z axis
-			Vector3 Direction = WalkGoal.GetRestPosition () - transform.position;
+			Vector3 Direction = WalkToPosition - transform.position;
 			Direction = new Vector3(Direction.x, Direction.y, 0);
 
 			// Calculate the movement for this frame and add this to the position
@@ -51,8 +61,12 @@ public class Worker : MonoBehaviour
 
 			// If the movement is bigger than the actual length to walk in total, switch to idle
 			//  (-0.01f is a small margin to make sure we always switch)
-			if (Movement.x > Direction.x - 0.01f && Movement.y > Direction.y - 0.01f) {
-				SwitchState (States.Idle);
+			if (Mathf.Abs(Movement.x) > Mathf.Abs(Direction.x) - 0.01f && Mathf.Abs(Movement.y) > Mathf.Abs(Direction.y) - 0.01f) {
+				if(State == States.WalkingToBuilding){
+					SwitchState (States.Learning);
+				}else if(State == States.WalkingFromBuilding){
+					SwitchState (States.Idle);
+				}
 			}
 		}
 	}
@@ -61,12 +75,23 @@ public class Worker : MonoBehaviour
 	 * Switch from state and possibility to do some preperation for 
 	 * this state
 	 */
-	void SwitchState (States state) 
+	public void SwitchState (States state) 
 	{
 		State = state;
 		if (State == States.Idle) {
 			StartIdlePosition = transform.position;
-        }
+		} else if (State == States.WalkingToBuilding) {
+			WalkGoal.walkingWorkers += 1;
+			WalkToPosition = WalkGoal.GetRestPosition ();
+		} else if (State == States.WalkingFromBuilding) {
+			LearnBar.gameObject.SetActive(false);
+			WalkToPosition = SpawnPosition;
+			Debug.Log("WalkToPosition: " + WalkToPosition);
+		} else if (State == States.Learning) {
+			StartIdlePosition = transform.position;
+			WalkGoal.AddWorker(this);
+			LearnBar.gameObject.SetActive(true);
+		}
     }
 
 	/**
@@ -75,6 +100,7 @@ public class Worker : MonoBehaviour
 	public void SetGoal (Building building)
 	{
 		WalkGoal = building;
-		SwitchState (States.Walking);
+		SwitchState (States.WalkingToBuilding);
 	}
+	
 }
