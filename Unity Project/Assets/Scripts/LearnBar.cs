@@ -6,7 +6,7 @@ public class LearnBar : MonoBehaviour {
 	private float StartScale;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		StartScale = GreenBar.transform.localScale.x;
 
 		Vector3 scale = GreenBar.transform.localScale;
@@ -16,7 +16,6 @@ public class LearnBar : MonoBehaviour {
 
 	public void SetPercentage(float percentage)
 	{
-		Debug.Log ("Set percentage: " + percentage);
 		GreenBar.transform.localScale = new Vector3 (percentage * StartScale, GreenBar.transform.localScale.y, GreenBar.transform.localScale.z);
 	}
 }

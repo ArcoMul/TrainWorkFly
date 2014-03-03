@@ -65,7 +65,7 @@ public class Worker : MonoBehaviour
 			// If the movement is bigger than the actual length to walk in total, switch to idle
 			//  (-0.01f is a small margin to make sure we always switch)
 			if (Mathf.Abs(Movement.x) > Mathf.Abs(Direction.x) - 0.01f && Mathf.Abs(Movement.y) > Mathf.Abs(Direction.y) - 0.01f) {
-				if(State == States.WalkingToBuilding){
+				if(State == States.WalkingToBuilding && WalkGoal != null){
 					if (WalkGoal.GetComponent<LearnBuilding>() != null) {
 						SwitchState (States.Learning);
 					} else if (WalkGoal.GetComponent<TaskBuilding>() != null) {
@@ -116,7 +116,9 @@ public class Worker : MonoBehaviour
 		if (State == States.Idle){
 			result = SpawnPosition;
 		}else if (State == States.WalkingToBuilding){
-			result =  WalkGoal.GetRestPosition ();
+			if(WalkGoal != null){
+				result =  WalkGoal.GetRestPosition ();
+			}
 		}else if (State == States.WalkingFromBuilding){
 			result =  SpawnPosition;
 		}else if (State == States.Learning){

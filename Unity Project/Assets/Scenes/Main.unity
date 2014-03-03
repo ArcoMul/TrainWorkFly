@@ -947,7 +947,7 @@ Renderer:
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
-  m_PrefabInternal: {fileID: 728224069}
+  m_PrefabInternal: {fileID: 648478021}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 617058782}
@@ -964,7 +964,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11400000, guid: 91189587b1912e74281d0cc2ef544685,
     type: 2}
-  m_PrefabInternal: {fileID: 728224069}
+  m_PrefabInternal: {fileID: 648478021}
   m_GameObject: {fileID: 617058780}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -973,11 +973,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Building: {fileID: 100008, guid: c1834ee92df8eef4bbc97956880d766f, type: 2}
   Tasks: []
+  TimeFailTask: 90
+  TimeFinishTask: 30
+  TimeMultiplier: 10
 --- !u!4 &617058782
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 400000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
-  m_PrefabInternal: {fileID: 728224069}
+  m_PrefabInternal: {fileID: 648478021}
   m_GameObject: {fileID: 617058780}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.5, y: -1, z: 0}
@@ -1074,6 +1077,50 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae0aeb79dc2759d448e06949b5e1d202, type: 2}
   m_RootGameObject: {fileID: 309105130}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
+--- !u!1001 &648478021
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
+      propertyPath: TimeFailTask
+      value: 90
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
+  m_RootGameObject: {fileID: 617058780}
   m_IsPrefabParent: 0
   m_IsExploded: 1
 --- !u!1 &654605427
@@ -1374,50 +1421,6 @@ Prefab:
   m_RootGameObject: {fileID: 1298104228}
   m_IsPrefabParent: 0
   m_IsExploded: 1
---- !u!1001 &728224069
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 4.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11400000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
-      propertyPath: Building
-      value: 
-      objectReference: {fileID: 100008, guid: c1834ee92df8eef4bbc97956880d766f, type: 2}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
-  m_RootGameObject: {fileID: 617058780}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
 --- !u!1 &768843964
 GameObject:
   m_ObjectHideFlags: 0
@@ -1668,6 +1671,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Building: {fileID: 100010, guid: c22b1376b98e80b47a5bf8b27c89bf2c, type: 2}
   Tasks: []
+  TimeFailTask: 120
+  TimeFinishTask: 45
+  TimeMultiplier: 10
 --- !u!4 &789208775
 Transform:
   m_ObjectHideFlags: 0
@@ -2050,6 +2056,18 @@ Prefab:
       propertyPath: Building
       value: 
       objectReference: {fileID: 100010, guid: c22b1376b98e80b47a5bf8b27c89bf2c, type: 2}
+    - target: {fileID: 11400000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
+      propertyPath: TimeFailTask
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
+      propertyPath: TimeFinishTask
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
+      propertyPath: TimeMultiplier
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
   m_RootGameObject: {fileID: 789208773}
