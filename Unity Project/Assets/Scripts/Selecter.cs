@@ -42,7 +42,9 @@ public class Selecter : MonoBehaviour
 	 */
 	public void Deselect ()
 	{
-		Active.Deselect();
+		if (Active != null) {
+			Active.Deselect();
+		}
 		Active = null;
 	}
 
