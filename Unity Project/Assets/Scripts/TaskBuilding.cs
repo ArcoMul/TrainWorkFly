@@ -3,7 +3,11 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 
-public class TaskBuilding : Building {
+public class TaskBuilding : Building
+{
+	public enum TaskTypes {Repair, Paint}
+	public TaskTypes TaskType;
+
 	public float TimeToFinishTask;
 	public LearnBar ProgressBar;
 
@@ -24,7 +28,7 @@ public class TaskBuilding : Building {
 		double TotalTimeWorkedOnTask = 0;
 		int i = 0;
 		foreach (Worker w in Workers) {
-			TotalTimeWorkedOnTask += DateTime.Now.Subtract(WorkerTimeOfArrival[i]).TotalSeconds;
+			TotalTimeWorkedOnTask += DateTime.Now.Subtract(WorkerTimeOfArrival[i]).TotalSeconds * GetWorkerSkill(w);
 			i++;
 		}
 
@@ -47,5 +51,14 @@ public class TaskBuilding : Building {
 			}
 			Destroy(gameObject);
 		}
+	}
+
+	private int GetWorkerSkill (Worker w) {
+		if (TaskType == TaskTypes.Repair) {
+			return w.RepairSkill;
+		} else if (TaskType == TaskTypes.Paint) {
+			return w.PaintSkill;
+		}
+		return 1;
 	}
 }
