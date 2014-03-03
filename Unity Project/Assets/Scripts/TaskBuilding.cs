@@ -11,9 +11,16 @@ public class TaskBuilding : Building
 	public float TimeToFinishTask;
 	public LearnBar ProgressBar;
 
+	public int TimeToFailTask;
+	public LearnBar FailBar;
+
+	private DateTime SpawnTime;
+
 	protected virtual void Start ()
 	{
 		base.Start();
+
+		SpawnTime = DateTime.Now;
 
 		// Hide the progressbar
 		ProgressBar.gameObject.SetActive(false);
@@ -21,6 +28,14 @@ public class TaskBuilding : Building
 
 	void Update()
 	{
+		double TimeSpanSinceSpawn = DateTime.Now.Subtract(SpawnTime).TotalSeconds;
+		FailBar.SetPercentage((float) TimeSpanSinceSpawn / TimeToFailTask );
+
+		if (TimeSpanSinceSpawn > TimeToFailTask) {
+			FailTask();
+			return;
+		}
+
 		// If nobody is working, dont mind this
 		if (Workers.Count == 0) return;
 
@@ -39,6 +54,8 @@ public class TaskBuilding : Building
 		if (!ProgressBar.gameObject.activeSelf) {
 			ProgressBar.gameObject.SetActive(true);
 		}
+
+		Debug.Log ("Set percentage: " + ((float) TotalTimeWorkedOnTask / TimeToFinishTask));
 
 		// Update progressbar with new value
 		ProgressBar.SetPercentage((float) TotalTimeWorkedOnTask / TimeToFinishTask );
@@ -66,5 +83,11 @@ public class TaskBuilding : Building
 		}
 		Destroy(gameObject);
 		Score.Instance.Points++;
+	}
+
+	private void FailTask ()
+	{
+		Destroy(gameObject);
+		Application.LoadLevel("GameOver");
 	}
 }

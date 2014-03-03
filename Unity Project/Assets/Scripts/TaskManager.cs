@@ -14,18 +14,7 @@ public class TaskManager : MonoBehaviour {
 
 	public void CreateBuilding()
 	{
-		GameObject Obj = (GameObject) Instantiate (Building, new Vector3(transform.position.x + 1, transform.position.y, transform.position.z), new Quaternion(0, 0, 0, 0)); 
+		GameObject Obj = (GameObject) Instantiate (Building, new Vector3(transform.position.x - (Tasks.Count), transform.position.y, transform.position.z), new Quaternion(0, 0, 0, 0)); 
 		Tasks.Add(Obj.GetComponent<TaskBuilding>());
-	}
-
-	public void FinishCurrentPaintTask()
-	{
-
-	}
-	
-	public void FinishCurrentRepairTask()
-	{
-		
-	}
-
+	}	
 }
