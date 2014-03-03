@@ -11,7 +11,7 @@ public class Worker : MonoBehaviour
 	/**
 	 * Different states for the worker
 	 */
-	public enum States {Idle = 1, WalkingToBuilding = 2, WalkingFromBuilding = 3, Learning = 4, Repairing = 5}
+	public enum States {Idle = 1, WalkingToBuilding = 2, WalkingFromBuilding = 3, Learning = 4, Working = 5}
 	public States State = States.Idle;
 
 	/**
@@ -69,8 +69,12 @@ public class Worker : MonoBehaviour
 			//  (-0.01f is a small margin to make sure we always switch)
 			if (Mathf.Abs(Movement.x) > Mathf.Abs(Direction.x) - 0.01f && Mathf.Abs(Movement.y) > Mathf.Abs(Direction.y) - 0.01f) {
 				if(State == States.WalkingToBuilding){
-					SwitchState (States.Learning);
-				}else if(State == States.WalkingFromBuilding){
+					if (WalkGoal.GetComponent<LearnBuilding>() != null) {
+						SwitchState (States.Learning);
+					} else if (WalkGoal.GetComponent<TaskBuilding>() != null) {
+						SwitchState (States.Working);
+					}
+				} else if(State == States.WalkingFromBuilding){
 					SwitchState (States.Idle);
 				}
 			}
@@ -84,18 +88,30 @@ public class Worker : MonoBehaviour
 	public void SwitchState (States state) 
 	{
 		State = state;
-		if (State == States.Idle) {
+		if (State == States.Idle)
+		{
 			StartIdlePosition = transform.position;
-		} else if (State == States.WalkingToBuilding) {
+		}
+		else if (State == States.WalkingToBuilding)
+		{
 			WalkGoal.walkingWorkers += 1;
 			WalkToPosition = WalkGoal.GetRestPosition ();
-		} else if (State == States.WalkingFromBuilding) {
+		}
+		else if (State == States.WalkingFromBuilding)
+		{
 			LearnBar.gameObject.SetActive(false);
 			WalkToPosition = SpawnPosition;
-		} else if (State == States.Learning) {
+		}
+		else if (State == States.Learning)
+		{
 			StartIdlePosition = transform.position;
 			WalkGoal.AddWorker(this);
 			LearnBar.gameObject.SetActive(true);
+		}
+		else if (State == States.Working)
+		{
+			StartIdlePosition = transform.position;
+			WalkGoal.AddWorker(this);
 		}
     }
 
