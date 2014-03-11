@@ -1687,7 +1687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 674f87de4917150448585f615f874ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Building: {fileID: 100010, guid: c22b1376b98e80b47a5bf8b27c89bf2c, type: 2}
+  Building: {fileID: 100008, guid: 087af702fd130304db4d16c1afcec4c0, type: 2}
   Tasks: []
   TimeFailTask: 120
   TimeFinishTask: 45
@@ -2184,7 +2184,7 @@ Prefab:
     - target: {fileID: 11400000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
       propertyPath: Building
       value: 
-      objectReference: {fileID: 100010, guid: c22b1376b98e80b47a5bf8b27c89bf2c, type: 2}
+      objectReference: {fileID: 100008, guid: 087af702fd130304db4d16c1afcec4c0, type: 2}
     - target: {fileID: 11400000, guid: 91189587b1912e74281d0cc2ef544685, type: 2}
       propertyPath: TimeFailTask
       value: 120

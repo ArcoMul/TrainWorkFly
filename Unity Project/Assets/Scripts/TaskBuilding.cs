@@ -12,7 +12,7 @@ public class TaskBuilding : Building
 	public TaskTypes TaskType;
 
 	public float TimeToFinishTask;
-	public LearnBar ProgressBar;
+	public CircleBar ProgressBar;
 
 	public int TimeToFailTask;
 	public LearnBar FailBar;

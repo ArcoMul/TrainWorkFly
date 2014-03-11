@@ -5,7 +5,9 @@ public class CircleBar : MonoBehaviour
 {
 	public Sprite[] Frames;
 
-	void Awake () {
+	void Awake ()
+	{
+
 	}
 	
 	public void SetPercentage(float percentage)
