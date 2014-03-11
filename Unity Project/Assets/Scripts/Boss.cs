@@ -3,17 +3,19 @@ using System.Collections;
 
 public class Boss : MonoBehaviour {
 
+    public static Boss Instance;
+
     public Vector3 MoveToPosition;
     public bool Walking = false;
 
 	// Use this for initialization
-	void Start () {
-	
+	void Awake () {
+        Instance = this;
 	}
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !Selectable.IsSelectingInThisFrame)
         {
             MoveToPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
             Walking = true;

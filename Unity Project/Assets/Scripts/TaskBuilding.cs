@@ -23,6 +23,8 @@ public class TaskBuilding : Building
 
 	public Vector3 MoveToPosition;
 
+    public double TotalTimeWorkedOnTask = 0;
+
 	protected virtual void Start ()
 	{
 		base.Start();
@@ -63,13 +65,15 @@ public class TaskBuilding : Building
 		if (Workers.Count == 0) return;
 
 		// Calculate how much time there is worked on the task
-		double TotalTimeWorkedOnTask = 0;
+		
 		int i = 0;
 		foreach (Worker w in Workers) {
-			TotalTimeWorkedOnTask += DateTime.Now.Subtract(WorkerTimeOfArrival[i]).TotalSeconds * GetWorkerSkill(w);
+            float increaserForHardWorkers = w.IsWorkingExtraHard ? 2.5f : 1f;
+            float increaserSoItWontBeSoSlow = 1.5f;
+            TotalTimeWorkedOnTask += Time.deltaTime * increaserSoItWontBeSoSlow * GetWorkerSkill(w) * increaserForHardWorkers;
 			i++;
 		}
-
+        Debug.Log("TotalTimeWorkedOnTask: " + TotalTimeWorkedOnTask);
 		// Stop if there is not worked on the task
 		if (TotalTimeWorkedOnTask == 0) return;
 

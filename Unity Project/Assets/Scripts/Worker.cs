@@ -11,8 +11,9 @@ public class Worker : MonoBehaviour
 	/**
 	 * Different states for the worker
 	 */
-	public enum States {Idle = 1, WalkingToBuilding = 2, WalkingFromBuilding = 3, Learning = 4, Working = 5}
+	public enum States {Idle = 1, WalkingToBuilding = 2, WalkingFromBuilding = 3, Learning = 4, Working = 5, WalkingToPlayer = 6}
 	public States State = States.Idle;
+    public bool IsWorkingExtraHard;
 
 	/**
 	 * What is the goal to walk to for this worker
@@ -67,10 +68,27 @@ public class Worker : MonoBehaviour
 						SwitchState (States.Working);
 					}
 				} else if(State == States.WalkingFromBuilding){
-					SwitchState (States.Idle);
+                    SwitchState(States.WalkingToPlayer);
 				}
 			}
-		}
+        }
+        else if (State == States.WalkingToPlayer)
+        {
+            if(Vector3.Distance(Boss.Instance.transform.position, this.transform.position) > 0.4f){
+                Vector3 Direction = Boss.Instance.transform.position - transform.position;
+                Direction = new Vector3(Direction.x, Direction.y, 0);
+
+                // Calculate the movement for this frame and add this to the position
+                Vector3 Movement = Direction.normalized * Time.deltaTime * 2;
+                transform.position += Movement;
+            }
+        }
+        else if (State == States.Working)
+        {
+            IsWorkingExtraHard =  (Vector3.Distance(Boss.Instance.transform.position, this.transform.position) < 1f);
+            this.GetComponent<Animator>().enabled = IsWorkingExtraHard;
+
+        }
 	}
 
 	/**
@@ -82,6 +100,7 @@ public class Worker : MonoBehaviour
 		State = state;
 		if (State == States.Idle)
 		{
+            return;
 		}
 		else if (State == States.WalkingToBuilding)
 		{
@@ -91,6 +110,7 @@ public class Worker : MonoBehaviour
 		{
 			WalkGoal.WalkingWorkers--;
 			LearnBar.gameObject.SetActive(false);
+            SwitchState(States.WalkingToPlayer);
 		}
 		else if (State == States.Learning)
 		{
@@ -101,6 +121,10 @@ public class Worker : MonoBehaviour
 		{
 			WalkGoal.AddWorker(this);
 		}
+        else if (State == States.WalkingToPlayer)
+        {
+            return;
+        }
     }
 
 	public Vector3 GetWalkToPosition (States state) 

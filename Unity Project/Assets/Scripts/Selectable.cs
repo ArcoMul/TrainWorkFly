@@ -6,6 +6,7 @@ using System.Collections;
  */
 public class Selectable : MonoBehaviour
 {
+    public static bool IsSelectingInThisFrame = false;
 	/**
 	 * The sprites to switch between
 	 */
@@ -34,9 +35,15 @@ public class Selectable : MonoBehaviour
 
 	void OnMouseDown ()
 	{
+        IsSelectingInThisFrame = true;
 		if (SelectOnClick) {
 			Selecter.Instance.Select (this);
 		}
 	}
+
+    void LateUpdate()
+    {
+        IsSelectingInThisFrame = false;
+    }
 	
 }
