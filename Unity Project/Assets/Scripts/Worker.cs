@@ -46,13 +46,8 @@ public class Worker : MonoBehaviour
 
 	void Update ()
 	{
-		// On Idle move around a bit to make the scene look alive
-		if (State == States.Idle)
-		{
-			transform.position = GetWalkToPosition(State) - new Vector3(2.5f * Time.deltaTime, 2.5f * Time.deltaTime, 0) + new Vector3(Random.value * 5f * Time.deltaTime, Random.value * 5f * Time.deltaTime, 0);
-		}
 		// On walking, walk to the goal
-		else if (State == States.WalkingToBuilding || State == States.WalkingFromBuilding)
+		if (State == States.WalkingToBuilding || State == States.WalkingFromBuilding)
 		{
 			// Get the direction from the worker to the building and reset the z axis
 			Vector3 Direction = GetWalkToPosition(State) - transform.position;
