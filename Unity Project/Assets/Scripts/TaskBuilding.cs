@@ -37,7 +37,6 @@ public class TaskBuilding : Building
 	{
 		if (State == States.Moving)
 		{
-			Debug.Log("Moving");
 			// Get the direction from the worker to the building and reset the z axis
 			Vector3 Direction = MoveToPosition - transform.position;
 			Direction = new Vector3(Direction.x, Direction.y, 0);
