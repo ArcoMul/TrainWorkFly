@@ -30,17 +30,20 @@ public class TaskBuilding : Building
 		ProgressBar.gameObject.SetActive(false);
 	}
 
-	void Update()
+	override public void Update()
 	{
+        base.Update();
 		// If nobody is working, dont mind this
-		if (Workers.Count == 0) return;
+        if (WorkerItems.Count == 0) return;
 
 		// Calculate how much time there is worked on the task		
 		int i = 0;
-		foreach (Worker w in Workers) {
-            float increaserForHardWorkers = w.IsWorkingExtraHard ? 2.5f : 1f;
+        
+        foreach (WorkerItem workerItem in WorkerItems)
+        {
+            float increaserForHardWorkers = workerItem.Worker.IsWorkingExtraHard ? 2.5f : 1f;
             float increaserSoItWontBeSoSlow = 1.5f;
-            TotalTimeWorkedOnTask += Time.deltaTime * increaserSoItWontBeSoSlow * w.GetLevel(this.Type) * increaserForHardWorkers;
+            TotalTimeWorkedOnTask += Time.deltaTime * increaserSoItWontBeSoSlow * workerItem.Worker.GetLevel(this.Type) * increaserForHardWorkers;
 			i++;
 		}
 
@@ -64,8 +67,8 @@ public class TaskBuilding : Building
 
 	private void FinishTask ()
 	{
-		foreach (Worker w in Workers) {
-			w.SwitchState(Worker.States.WalkingFromBuilding);
+		foreach (WorkerItem w in WorkerItems) {
+			w.Worker.SwitchState(Worker.States.WalkingFromBuilding);
 		}
         IsCompleted = true;
 		Score.Instance.Points++;

@@ -107,13 +107,18 @@ public class Worker : MonoBehaviour
 		}
 		else if (State == States.WalkingToBuilding)
 		{
-			WalkGoal.WalkingWorkers++;
+			//WalkGoal.WalkingWorkers++;
+            if (WalkGoal != null)
+            {
+                WalkGoal.RemoveWorker(this);
+            }
 		}
 		else if (State == States.WalkingFromBuilding)
 		{
-			WalkGoal.WalkingWorkers--;
+			//WalkGoal.WalkingWorkers--;
+            WalkGoal.RemoveWorker(this);
 			LearnBar.gameObject.SetActive(false);
-            SwitchState(States.WalkingToPlayer);
+           // SwitchState(States.WalkingToPlayer);
 		}
 		else if (State == States.Learning)
 		{

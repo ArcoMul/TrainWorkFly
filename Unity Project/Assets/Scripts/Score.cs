@@ -14,16 +14,20 @@ public class Score : MonoBehaviour
 		}
 	}
 
-	public TextMesh Text;
-
 	private static int _Points = 0;
+
 	public int Points {
 		get {
 			return _Points;
 		}
 		set {
 			_Points = value;
-			Text.text = "Score: " + _Points;
+            UpdateText();
 		}
 	}
+
+    public void UpdateText()
+    {
+        this.GetComponent<TextMesh>().text = "Score: " + _Points;
+    }
 }

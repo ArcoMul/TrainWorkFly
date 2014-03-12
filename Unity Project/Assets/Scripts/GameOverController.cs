@@ -6,6 +6,6 @@ public class GameOverController : MonoBehaviour
 
 	void Start ()
 	{
-		
+        Score.Instance.UpdateText();
 	}
 }

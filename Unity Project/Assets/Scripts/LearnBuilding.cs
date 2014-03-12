@@ -15,10 +15,11 @@ public class LearnBuilding : Building
 	{
 		List<int> removedindexes = new List<int>();
 		int index = 0;
-		foreach (Worker w in Workers)
+		foreach (WorkerItem workerItem in WorkerItems)
 		{
+            Worker w = workerItem.Worker;
 			float timetolearn = TimeToLearnSkill * w.GetLevel(Type);
-			float time = (float)DateTime.Now.Subtract(WorkerTimeOfArrival[index]).TotalSeconds;
+            float time = (float)DateTime.Now.Subtract(workerItem.WorkerTimeOfArrival).TotalSeconds;
 			CircleBar.SetPercentage(time / timetolearn);
 
 			if(time >= timetolearn)
@@ -33,8 +34,7 @@ public class LearnBuilding : Building
 		}
 
 		foreach (int i in removedindexes) {
-			Workers.RemoveAt(i);
-			WorkerTimeOfArrival.RemoveAt(i);
+            WorkerItems.RemoveAt(i);
 		}
 	}
 }

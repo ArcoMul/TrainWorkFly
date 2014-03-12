@@ -84,6 +84,7 @@ GameObject:
   - 4: {fileID: 522181230}
   - 23: {fileID: 522181229}
   - 102: {fileID: 522181228}
+  - 114: {fileID: 522181227}
   m_Layer: 0
   m_Name: Score
   m_TagString: Untagged
@@ -91,6 +92,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &522181227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 522181226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb17b7115ee21446b7cb9ba477ecf80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!102 &522181228
 TextMesh:
   serializedVersion: 3
@@ -235,9 +247,8 @@ GameObject:
   - 23: {fileID: 2036757087}
   - 102: {fileID: 2036757086}
   - 114: {fileID: 2036757089}
-  - 114: {fileID: 2036757090}
   m_Layer: 0
-  m_Name: Game Over
+  m_Name: Game Won
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -307,15 +318,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1928a5993538bac4d8e93f2dcce22d57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2036757090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2036757085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bb17b7115ee21446b7cb9ba477ecf80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Text: {fileID: 522181228}
