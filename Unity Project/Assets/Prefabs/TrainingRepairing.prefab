@@ -112,7 +112,7 @@ MonoBehaviour:
   Workers: []
   CircleBar: {fileID: 11400002}
   TimeToLearnSkill: 10
-  Type: 0
+  Type: 1
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -256,7 +256,7 @@ MonoBehaviour:
   WalkingWorkers: 0
   Workers: []
   State: 1
-  TaskType: 0
+  Type: 1
   TimeToFinishTask: 30
   ProgressBar: {fileID: 11400002}
   TimeToFailTask: 20
