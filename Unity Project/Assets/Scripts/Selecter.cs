@@ -33,6 +33,11 @@ public class Selecter : MonoBehaviour
 		if (Active != null) {
 			Active.Deselect();
 		}
+        if (s == null)
+        {
+            Debug.LogError("Selectable is null, should happen");
+            return;
+        }
 		Active = s;
 		Active.Select();
 	}

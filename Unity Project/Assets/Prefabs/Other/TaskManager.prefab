@@ -38,11 +38,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 674f87de4917150448585f615f874ce4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Building: {fileID: 100008, guid: c1834ee92df8eef4bbc97956880d766f, type: 2}
+  Building: {fileID: 0}
   Tasks: []
   TimeFailTask: 120
   TimeFinishTask: 30
   TimeMultiplier: 10
+  BuildingCount: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

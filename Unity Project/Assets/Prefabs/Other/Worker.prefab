@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 1
+  IsWorkingExtraHard: 0
   LearnBar: {fileID: 11400000}
   PaintText: {fileID: 0}
   RepairText: {fileID: 0}
