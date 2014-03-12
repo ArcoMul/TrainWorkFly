@@ -18,7 +18,13 @@ public class AirplaneManager : MonoBehaviour {
 
     public void SpawnNextAirplane()
     {
+        if (AirplanePrefabsToSpawn.Count <= position)
+        {
+            Application.LoadLevel("GameWon");
+            return;
+        }
         Instantiate(AirplanePrefabsToSpawn[position], GameObject.Find("StartPoint").transform.position, Quaternion.identity);
         position++;
+        GameObject.Find("LevelText").GetComponent<TextMesh>().text = "Level: " + position;
     }
 }

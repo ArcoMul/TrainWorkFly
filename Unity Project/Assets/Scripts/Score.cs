@@ -16,7 +16,7 @@ public class Score : MonoBehaviour
 
 	public TextMesh Text;
 
-	private int _Points = 0;
+	private static int _Points = 0;
 	public int Points {
 		get {
 			return _Points;

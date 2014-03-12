@@ -74,10 +74,9 @@ public class Airplane : MonoBehaviour {
 
     public IEnumerator Check()
     {
-        Debug.Log("Creating building1");
         while (true)
         {
-            GameObject.Find("TimeLeft").GetComponent<TextMesh>().text = "Time left: " + (TimeToFinishPlane - TimeSinceSpawn);
+            GameObject.Find("TimeLeftText").GetComponent<TextMesh>().text = "Time left: " + (TimeToFinishPlane - TimeSinceSpawn);
             int completed = 0;
             completed = Tasks.FindAll(n => n.IsCompleted).Count;
             if (completed == Tasks.Count)
