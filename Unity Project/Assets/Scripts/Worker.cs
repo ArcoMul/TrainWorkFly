@@ -95,7 +95,6 @@ public class Worker : MonoBehaviour
 		else if (State == States.Learning)
 		{
 			WalkGoal.AddWorker(this);
-			LearnBar.gameObject.SetActive(true);
 		}
 		else if (State == States.Working)
 		{

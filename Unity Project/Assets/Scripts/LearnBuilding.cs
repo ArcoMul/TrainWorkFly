@@ -3,7 +3,10 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 
-public class LearnBuilding : Building {
+public class LearnBuilding : Building
+{
+	public CircleBar CircleBar;
+
 	public float TimeToLearnSkill;
 	public enum LearnType {Paint = 1, Repair = 2}
 	public LearnType Type;
@@ -17,13 +20,15 @@ public class LearnBuilding : Building {
 	{
 		List<int> removedindexes = new List<int>();
 		int index = 0;
-		foreach (Worker w in Workers) {
+		foreach (Worker w in Workers)
+		{
 			float timetolearn = TimeToLearnSkill * GetWorkerSkill(w);
 			float time = (float)DateTime.Now.Subtract(WorkerTimeOfArrival[index]).TotalSeconds;
-			w.LearnBar.SetPercentage(time / timetolearn);
+			CircleBar.SetPercentage(time / timetolearn);
 
 			if(time >= timetolearn)
 			{
+				CircleBar.SetPercentage(0);
 				w.SwitchState(Worker.States.WalkingFromBuilding);
 				removedindexes.Add(index);
 
