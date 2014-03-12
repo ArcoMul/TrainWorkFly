@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class TaskManager : MonoBehaviour {
+public class TaskManager : MonoBehaviour
+{
 	public GameObject Building;
 	public List<TaskBuilding> Tasks;
 	public int TimeFailTask;
@@ -11,8 +12,8 @@ public class TaskManager : MonoBehaviour {
 
 	private int BuildingCount = 0;
 
-	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		Tasks = new List<TaskBuilding> ();
         StartCoroutine(CreateBuildings());
 	}
@@ -32,7 +33,7 @@ public class TaskManager : MonoBehaviour {
             TaskBuilding.State = TaskBuilding.States.Moving;
             TaskBuilding.Manager = this;
             Tasks.Add(TaskBuilding);
-           // yield return new WaitForSeconds(45 - (BuildingCount * 5));
+            yield return new WaitForSeconds(45 - (BuildingCount * 5));
         }
 	}
 
@@ -42,7 +43,8 @@ public class TaskManager : MonoBehaviour {
 		Tasks.RemoveAt (0);
 		int index = 0;
 
-		foreach (TaskBuilding b in Tasks) {
+		foreach (TaskBuilding b in Tasks)
+		{
 			b.State = TaskBuilding.States.Moving;
 			b.MoveToPosition = new Vector3(transform.position.x + (index * 2), transform.position.y, transform.position.z);
 			index++;

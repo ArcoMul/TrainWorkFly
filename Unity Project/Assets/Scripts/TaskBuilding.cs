@@ -8,8 +8,7 @@ public class TaskBuilding : Building
 	public enum States {Idle = 1, Moving = 2}
 	public States State = States.Idle;
 
-	public enum TaskTypes {Repair, Paint}
-	public TaskTypes TaskType;
+	public Skill.Types Type;
 
 	public float TimeToFinishTask;
 	public CircleBar ProgressBar;
@@ -64,13 +63,12 @@ public class TaskBuilding : Building
 		// If nobody is working, dont mind this
 		if (Workers.Count == 0) return;
 
-		// Calculate how much time there is worked on the task
-		
+		// Calculate how much time there is worked on the task		
 		int i = 0;
 		foreach (Worker w in Workers) {
             float increaserForHardWorkers = w.IsWorkingExtraHard ? 2.5f : 1f;
             float increaserSoItWontBeSoSlow = 1.5f;
-            TotalTimeWorkedOnTask += Time.deltaTime * increaserSoItWontBeSoSlow * GetWorkerSkill(w) * increaserForHardWorkers;
+            TotalTimeWorkedOnTask += Time.deltaTime * increaserSoItWontBeSoSlow * w.GetLevel(this.Type) * increaserForHardWorkers;
 			i++;
 		}
 
@@ -90,15 +88,6 @@ public class TaskBuilding : Building
 		{
 			FinishTask();
 		}
-	}
-
-	private int GetWorkerSkill (Worker w) {
-		if (TaskType == TaskTypes.Repair) {
-			return w.RepairSkill;
-		} else if (TaskType == TaskTypes.Paint) {
-			return w.PaintSkill;
-		}
-		return 1;
 	}
 
 	private void FinishTask ()

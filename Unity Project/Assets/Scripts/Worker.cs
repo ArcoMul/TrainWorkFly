@@ -34,15 +34,15 @@ public class Worker : MonoBehaviour
 	public int PaintSkill;
 	public int RepairSkill;
 
+	public Skill[] Skills = new Skill[2];
+
 	void Start ()
 	{
 		SpawnPosition = transform.position;
+
 		// We start in Idle
 		SwitchState (States.Idle);
 		LearnBar.gameObject.SetActive(false);
-
-		AddPaintLevel (1);
-		AddRepairLevel (1);
 	}
 
 	void Update ()
@@ -118,7 +118,6 @@ public class Worker : MonoBehaviour
 		else if (State == States.Learning)
 		{
 			WalkGoal.AddWorker(this);
-			LearnBar.gameObject.SetActive(true);
 		}
 		else if (State == States.Working)
 		{
@@ -161,16 +160,42 @@ public class Worker : MonoBehaviour
 		SwitchState (States.WalkingToBuilding);
 	}
 
-	public void AddPaintLevel(int amount)
+	public void AddLevel (Skill.Types Type)
 	{
-		PaintSkill += amount;
-		PaintText.text = "Paint: " + PaintSkill;
+		if (Skills[0] != null && Skills[0].Type == Type)
+		{
+			Skills[0].Level++;
+		}
+		else if (Skills[1] != null && Skills[1].Type == Type)
+		{
+			Skills[1].Level++;
+		}
+		else if (Skills[0] == null) {
+			Skills[0] = new Skill (Type);
+		} else if (Skills[1] == null) {
+			Skills[1] = new Skill (Type);
+		} else if (Skills[0].Level <= Skills[1].Level) {
+			Skills[0] = new Skill (Type);
+		} else {
+			Skills[1] = new Skill (Type);
+		}
+
+		if (Skills[0] != null) {
+			PaintText.text = Skills[0].Type.ToString() + ": " + (Skills[0].Level - 1);
+		}
+		if (Skills[1] != null) {
+			RepairText.text = Skills[1].Type.ToString() + ": " + (Skills[1].Level - 1);
+		}
 	}
 
-	public void AddRepairLevel(int amount)
+	public int GetLevel (Skill.Types Type)
 	{
-		RepairSkill += amount;
-		RepairText.text = "Repair: " + RepairSkill;
+		if (Skills[0] != null && Skills[0].Type == Type) {
+			return Skills[0].Level;
+		} else if (Skills[1] != null && Skills[1].Type == Type) {
+			return Skills[1].Level;
+		}
+		return 1;
 	}
-	
+
 }

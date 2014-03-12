@@ -9,34 +9,24 @@ public class LearnBuilding : Building
 
 	public float TimeToLearnSkill;
 	public enum LearnType {Paint = 1, Repair = 2}
-	public LearnType Type;
+	public Skill.Types Type;
 	
-	// Use this for initialization
-	protected override void Start () {
-		base.Start (); 
-	}
-
 	void Update()
 	{
 		List<int> removedindexes = new List<int>();
 		int index = 0;
 		foreach (Worker w in Workers)
 		{
-			float timetolearn = TimeToLearnSkill * GetWorkerSkill(w);
+			float timetolearn = TimeToLearnSkill * w.GetLevel(Type);
 			float time = (float)DateTime.Now.Subtract(WorkerTimeOfArrival[index]).TotalSeconds;
 			CircleBar.SetPercentage(time / timetolearn);
 
 			if(time >= timetolearn)
 			{
-				CircleBar.SetPercentage(0);
 				w.SwitchState(Worker.States.WalkingFromBuilding);
+				w.AddLevel (Type);
+				CircleBar.SetPercentage(0);
 				removedindexes.Add(index);
-
-				if(Type == LearnType.Paint) {
-					w.AddPaintLevel(1);
-				}else if(Type == LearnType.Repair) {
-					w.AddRepairLevel(1);
-				}
 			}
 
 			index++;
@@ -46,14 +36,5 @@ public class LearnBuilding : Building
 			Workers.RemoveAt(i);
 			WorkerTimeOfArrival.RemoveAt(i);
 		}
-	}
-
-	private int GetWorkerSkill (Worker w) {
-		if (Type == LearnType.Repair) {
-			return w.RepairSkill;
-		} else if (Type == LearnType.Paint) {
-			return w.PaintSkill;
-		}
-		return 1;
 	}
 }
