@@ -87,7 +87,10 @@ public class Worker : MonoBehaviour
         {
             IsWorkingExtraHard =  (Vector3.Distance(Boss.Instance.transform.position, this.transform.position) < 1f);
             this.GetComponent<Animator>().enabled = IsWorkingExtraHard;
-
+            if (!IsWorkingExtraHard)
+            {
+                this.transform.localScale = Vector3.one;
+            }
         }
 	}
 

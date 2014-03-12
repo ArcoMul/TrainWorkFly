@@ -73,7 +73,7 @@ public class TaskBuilding : Building
             TotalTimeWorkedOnTask += Time.deltaTime * increaserSoItWontBeSoSlow * GetWorkerSkill(w) * increaserForHardWorkers;
 			i++;
 		}
-        Debug.Log("TotalTimeWorkedOnTask: " + TotalTimeWorkedOnTask);
+
 		// Stop if there is not worked on the task
 		if (TotalTimeWorkedOnTask == 0) return;
 

@@ -340,7 +340,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: 6d78a6b87e0181f48899719f2b2de2a3, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: .25, b: .25, a: 1}
 --- !u!95 &89944129
 Animator:
   serializedVersion: 2
@@ -702,6 +702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 1
+  IsWorkingExtraHard: 0
   LearnBar: {fileID: 1654564871}
   PaintText: {fileID: 704698904}
   RepairText: {fileID: 697238388}
@@ -2836,6 +2837,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 1
+  IsWorkingExtraHard: 0
   LearnBar: {fileID: 1391997611}
   PaintText: {fileID: 1070414263}
   RepairText: {fileID: 824626358}
@@ -3026,6 +3028,18 @@ Prefab:
     - target: {fileID: 9500000, guid: ae0aeb79dc2759d448e06949b5e1d202, type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 21200000, guid: ae0aeb79dc2759d448e06949b5e1d202, type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 21200000, guid: ae0aeb79dc2759d448e06949b5e1d202, type: 2}
+      propertyPath: m_Color.g
+      value: .25
+      objectReference: {fileID: 0}
+    - target: {fileID: 21200000, guid: ae0aeb79dc2759d448e06949b5e1d202, type: 2}
+      propertyPath: m_Color.b
+      value: .25
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400004, guid: ae0aeb79dc2759d448e06949b5e1d202, type: 2}
@@ -3585,6 +3599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 1
+  IsWorkingExtraHard: 0
   LearnBar: {fileID: 1696683995}
   PaintText: {fileID: 219268092}
   RepairText: {fileID: 1101686869}
@@ -4398,6 +4413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 1
+  IsWorkingExtraHard: 0
   LearnBar: {fileID: 828592848}
   PaintText: {fileID: 775843396}
   RepairText: {fileID: 1730067279}
@@ -4836,6 +4852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 1
+  IsWorkingExtraHard: 0
   LearnBar: {fileID: 219159585}
   PaintText: {fileID: 1019502971}
   RepairText: {fileID: 949249340}
