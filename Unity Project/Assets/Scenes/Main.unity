@@ -1930,7 +1930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AirplanePrefabsToSpawn:
-  - {fileID: 11400012, guid: d5ce4f2c8874a8046ad3044e606a1dc5, type: 2}
+  - {fileID: 11400012, guid: 288d26164dfde6941a3166a7486caaa4, type: 2}
   - {fileID: 11400012, guid: 3bd537f5437d5264799406fbd7bd3f19, type: 2}
   - {fileID: 11400012, guid: 58fd9912305d5d94db6733da5ec2d48a, type: 2}
   - {fileID: 11400016, guid: aa36161cda221f74698e057204cd124b, type: 2}
