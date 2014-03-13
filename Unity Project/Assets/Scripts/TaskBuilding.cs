@@ -23,9 +23,19 @@ public class TaskBuilding : Building
 
     public bool IsCompleted = false;
 
+	public GameObject TextCloud;
+	public TextMesh InfoText;
+	private string OriginalInfoText;
+
+	private float TimeToInvestigate = 3f;
+	private float InvestigatedFor = 0f;
+
 	protected virtual void Start ()
 	{
 		base.Start();
+
+		OriginalInfoText = InfoText.text;
+		InfoText.text = "";
 
 		SpawnTime = DateTime.Now;
 
@@ -44,13 +54,19 @@ public class TaskBuilding : Building
             if(Vector3.Distance(Boss.Instance.transform.position, transform.position) <= InvestigateDistance)
             {
                 Debug.Log("Boss in distance");
-                transform.FindChild("task-icon").gameObject.SetActive(true);
-                transform.FindChild("questionmark-icon").gameObject.SetActive(false);
-                Investigated = true;
+				InvestigatedFor += Time.deltaTime;
+				if (InvestigatedFor >= TimeToInvestigate)
+				{
+					InfoText.text = OriginalInfoText.Substring((int) Mathf.Floor((InvestigatedFor / TimeToInvestigate) * OriginalInfoText.Length));
+	                transform.FindChild("task-icon").gameObject.SetActive(true);
+	                transform.FindChild("questionmark-icon").gameObject.SetActive(false);
+	                Investigated = true;
+				}
             }
         }
 
         base.Update();
+
 		// If nobody is working, dont mind this
         if (WorkerItems.Count == 0) return;
 
