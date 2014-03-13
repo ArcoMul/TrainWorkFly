@@ -10,6 +10,9 @@ public class TaskBuilding : Building
 	public enum States {Idle = 1, Moving = 2}
 	public States State = States.Idle;
 
+    public float InvestigateDistance = 1.0f;
+    public bool Investigated = false;
+
 	public Skill.Types Type;
 
 	public CircleBar ProgressBar;
@@ -28,10 +31,23 @@ public class TaskBuilding : Building
 
 		// Hide the progressbar
 		ProgressBar.gameObject.SetActive(false);
+
+        transform.FindChild("questionmark-icon").gameObject.SetActive(true);
+        transform.FindChild("task-icon").gameObject.SetActive(false);
 	}
 
 	override public void Update()
 	{
+        if(!Investigated)
+        {
+            if(Vector3.Distance(Boss.Instance.transform.position, transform.position) <= InvestigateDistance)
+            {
+                transform.FindChild("task-icon").gameObject.SetActive(true);
+                transform.FindChild("questionmark-icon").gameObject.SetActive(false);
+                Investigated = true;
+            }
+        }
+
         base.Update();
 		// If nobody is working, dont mind this
         if (WorkerItems.Count == 0) return;
@@ -70,6 +86,7 @@ public class TaskBuilding : Building
 		foreach (WorkerItem w in WorkerItems) {
 			w.Worker.SwitchState(Worker.States.WalkingFromBuilding);
 		}
+		WorkerItems.Clear();
         IsCompleted = true;
 		Score.Instance.Points++;
 

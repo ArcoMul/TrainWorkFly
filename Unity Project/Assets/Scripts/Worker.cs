@@ -26,6 +26,7 @@ public class Worker : MonoBehaviour
 	private Vector3 WalkToPosition;
 	private Vector3 SpawnPosition;
 
+
 	public TextMesh PaintText;
 	public TextMesh RepairText;
 
@@ -40,6 +41,7 @@ public class Worker : MonoBehaviour
 
 		// We start in Idle
 		SwitchState (States.Idle);
+
 	}
 
 	void Update ()
@@ -113,7 +115,8 @@ public class Worker : MonoBehaviour
 		else if (State == States.WalkingFromBuilding)
 		{
 			//WalkGoal.WalkingWorkers--;
-            WalkGoal.RemoveWorker(this);
+            //WalkGoal.RemoveWorker(this);
+
            // SwitchState(States.WalkingToPlayer);
 		}
 		else if (State == States.Learning)
