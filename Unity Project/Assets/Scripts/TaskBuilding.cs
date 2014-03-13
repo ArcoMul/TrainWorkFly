@@ -70,6 +70,7 @@ public class TaskBuilding : Building
 		foreach (WorkerItem w in WorkerItems) {
 			w.Worker.SwitchState(Worker.States.WalkingFromBuilding);
 		}
+		WorkerItems.Clear();
         IsCompleted = true;
 		Score.Instance.Points++;
 

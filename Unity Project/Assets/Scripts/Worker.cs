@@ -116,7 +116,7 @@ public class Worker : MonoBehaviour
 		else if (State == States.WalkingFromBuilding)
 		{
 			//WalkGoal.WalkingWorkers--;
-            WalkGoal.RemoveWorker(this);
+            //WalkGoal.RemoveWorker(this);
 			LearnBar.gameObject.SetActive(false);
            // SwitchState(States.WalkingToPlayer);
 		}

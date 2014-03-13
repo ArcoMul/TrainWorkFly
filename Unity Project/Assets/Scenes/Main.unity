@@ -811,8 +811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2886cd3fb1256be4791dde8c15cecfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkingWorkers: 0
-  Workers: []
+  WorkerItems: []
   CircleBar: {fileID: 1591310835}
   TimeToLearnSkill: 5
   Type: 2
@@ -2090,8 +2089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2886cd3fb1256be4791dde8c15cecfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkingWorkers: 0
-  Workers: []
+  WorkerItems: []
   CircleBar: {fileID: 931480275}
   TimeToLearnSkill: 15
   Type: 0
@@ -2246,8 +2244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2886cd3fb1256be4791dde8c15cecfa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkingWorkers: 0
-  Workers: []
+  WorkerItems: []
   CircleBar: {fileID: 856672747}
   TimeToLearnSkill: 8
   Type: 1

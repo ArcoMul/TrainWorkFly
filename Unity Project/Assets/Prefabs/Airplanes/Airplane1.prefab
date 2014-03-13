@@ -191,8 +191,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.437314689, y: 1.61746061, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -.437314689, y: 1.61746061, z: -1}
+  m_LocalScale: {x: .763841569, y: .763840437, z: 1}
   m_Children:
   - {fileID: 400004}
   - {fileID: 400002}
@@ -238,8 +238,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.377417028, y: -2.18683147, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -.377417028, y: -2.18683147, z: -1}
+  m_LocalScale: {x: .763841569, y: .763840437, z: 1}
   m_Children:
   - {fileID: 400012}
   - {fileID: 400010}
@@ -252,7 +252,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100016}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 2.25353026, y: -.549116015, z: -1}
   m_LocalScale: {x: 1.30917203, y: 1.30917394, z: 1}
   m_Children:
   - {fileID: 400014}
@@ -312,8 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51fd51bc9d3928a41bb696cf61033a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkingWorkers: 0
-  Workers: []
+  WorkerItems: []
   State: 1
   Type: 0
   ProgressBar: {fileID: 11400000}
@@ -364,8 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51fd51bc9d3928a41bb696cf61033a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkingWorkers: 0
-  Workers: []
+  WorkerItems: []
   State: 1
   Type: 2
   ProgressBar: {fileID: 11400006}
