@@ -651,7 +651,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WorkerItems: []
   CircleBar: {fileID: 1591310835}
-  TimeToLearnSkill: 5
+  TimeToLearnSkill: 8
   Type: 2
 --- !u!212 &330917240
 SpriteRenderer:
@@ -1601,7 +1601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WorkerItems: []
   CircleBar: {fileID: 931480275}
-  TimeToLearnSkill: 15
+  TimeToLearnSkill: 8
   Type: 0
 --- !u!1 &825088186
 GameObject:
@@ -1868,6 +1868,10 @@ Prefab:
     - target: {fileID: 400000, guid: 62bf3e3f6b63acb4c82175ecc22e8f95, type: 2}
       propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 62bf3e3f6b63acb4c82175ecc22e8f95, type: 2}
+      propertyPath: TimeToLearnSkill
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62bf3e3f6b63acb4c82175ecc22e8f95, type: 2}
@@ -3888,7 +3892,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 9b2675e58a5aec249a4181c726709bd5, type: 2}
       propertyPath: TimeToLearnSkill
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9b2675e58a5aec249a4181c726709bd5, type: 2}
