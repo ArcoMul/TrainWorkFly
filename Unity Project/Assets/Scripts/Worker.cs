@@ -252,14 +252,8 @@ public class Worker : MonoBehaviour
 
     public void OnMouseEnter()
     {
-        if (Skills[0] == null && Skills[1] == null)
-        {
-            return;
-        }
-
-        UpdateTextCloud();
-
         TextCloud.SetActive(true);
+        UpdateTextCloud();
     }
 
     public void OnMouseExit()
