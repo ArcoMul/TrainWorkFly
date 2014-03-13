@@ -14,6 +14,13 @@ public class Worker : MonoBehaviour
 	public enum States {Idle = 1, WalkingToBuilding = 2, WalkingFromBuilding = 3, Learning = 4, Working = 5, WalkingToPlayer = 6}
 	public States State = States.Idle;
     public bool IsWorkingExtraHard;
+    
+    public GameObject TextCloud;
+    private Transform Text1;
+    private Transform Text2;
+    private Transform Icon1;
+    private Transform Icon2;
+
 
 	/**
 	 * What is the goal to walk to for this worker
@@ -33,6 +40,14 @@ public class Worker : MonoBehaviour
 
 	void Start ()
 	{
+        TextCloud = transform.FindChild("Textcloud").gameObject;
+        TextCloud.SetActive(false);
+
+        Text1 = TextCloud.transform.FindChild("Text1");
+        Text2 = TextCloud.transform.FindChild("Text2");
+        Icon1 = TextCloud.transform.FindChild("Icon1");
+        Icon2 = TextCloud.transform.FindChild("Icon2");
+
 		SpawnPosition = transform.position;
 
 		// We start in Idle
@@ -235,4 +250,51 @@ public class Worker : MonoBehaviour
 		return 1;
 	}
 
+    public void OnMouseEnter()
+    {
+        if (Skills[0] == null && Skills[1] == null)
+        {
+            return;
+        }
+
+        UpdateTextCloud();
+
+        TextCloud.SetActive(true);
+    }
+
+    public void OnMouseExit()
+    {
+        TextCloud.SetActive(false);
+    }
+
+    public void UpdateTextCloud()
+    {
+        if (Skills[0] != null)
+        {
+            Text1.gameObject.SetActive(true);
+            Text1.GetComponent<TextMesh>().text = (Skills[0].Level - 1).ToString();
+
+            Icon1.gameObject.SetActive(true);
+            Icon1.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(Skills[0].Type.ToString());
+        }
+        else
+        {
+            Text1.gameObject.SetActive(false);
+            Icon1.gameObject.SetActive(false);
+        }
+
+        if (Skills[1] != null)
+        {
+            Text2.gameObject.SetActive(true);
+            Text2.GetComponent<TextMesh>().text = (Skills[1].Level - 1).ToString();
+
+            Icon2.gameObject.SetActive(true);
+            Icon2.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>(Skills[1].Type.ToString());
+        }
+        else
+        {
+            Text2.gameObject.SetActive(false);
+            Icon2.gameObject.SetActive(false);
+        }
+    }
 }

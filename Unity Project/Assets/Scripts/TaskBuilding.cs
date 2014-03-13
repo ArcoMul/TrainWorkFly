@@ -58,10 +58,8 @@ public class TaskBuilding : Building
         {
 			Vector2 BossPos = new Vector2(Boss.Instance.transform.position.x, Boss.Instance.transform.position.y);
 			Vector2 Pos = new Vector2(transform.position.x, transform.position.y);
-			Debug.Log("Not investigated distance " + Vector2.Distance(BossPos, Pos) + " Distance " + InvestigateDistance);
             if(Vector3.Distance(Boss.Instance.transform.position, transform.position) <= InvestigateDistance)
             {
-				Debug.Log("Boss in distance " + InvestigatedFor + " | " + TimeToInvestigate);
 				TextCloud.SetActive (true);
 				InvestigatedFor += Time.deltaTime;
 				InfoText.text = OriginalInfoText.Substring(0, (int) Mathf.Floor((InvestigatedFor / TimeToInvestigate) * OriginalInfoText.Length));
