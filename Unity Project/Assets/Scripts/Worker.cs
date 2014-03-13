@@ -57,7 +57,7 @@ public class Worker : MonoBehaviour
 			Direction = new Vector3(Direction.x, Direction.y, 0);
 
 			// Calculate the movement for this frame and add this to the position
-			Vector3 Movement = Direction.normalized * Time.deltaTime * 2;
+			Vector3 Movement = Direction.normalized * Time.deltaTime * 3;
 			transform.position += Movement;
 
 			// If the movement is bigger than the actual length to walk in total, switch to idle
@@ -82,7 +82,7 @@ public class Worker : MonoBehaviour
                 Direction = new Vector3(Direction.x, Direction.y, 0);
 
                 // Calculate the movement for this frame and add this to the position
-                Vector3 Movement = Direction.normalized * Time.deltaTime * 2;
+                Vector3 Movement = Direction.normalized * Time.deltaTime * 3;
                 transform.position += Movement;
             }
 			else if (State != States.Idle)
@@ -129,7 +129,7 @@ public class Worker : MonoBehaviour
 		}
 		else if (State == States.WalkingFromBuilding)
 		{
-			LearnBar.gameObject.SetActive(false);
+            // Nothing?
 		}
 		else if (State == States.Learning)
 		{
@@ -147,15 +147,20 @@ public class Worker : MonoBehaviour
 
 	public Vector3 GetWalkToPosition (States state) 
 	{
-		Vector3 result = new Vector3(0.0f, 0.0f, 0.0f);
+        Vector3 result = Vector3.zero;
 
 		State = state;
 		if (State == States.Idle){
 			result = SpawnPosition;
 		}else if (State == States.WalkingToBuilding){
-			if(WalkGoal != null){
-				result =  WalkGoal.GetRestPosition ();
-			}
+            if (WalkGoal != null)
+            {
+                result = WalkGoal.GetRestPosition();
+            }
+            else
+            {
+                Debug.LogError("WalkGoal is null, shouldn't happen!");
+            }
 		}else if (State == States.WalkingFromBuilding){
 			result =  SpawnPosition;
 		}else if (State == States.Learning){
@@ -172,6 +177,11 @@ public class Worker : MonoBehaviour
 	 */
 	public void SetGoal (Building building)
 	{
+        // is null first time? - marijn
+        if (WalkGoal != null)
+        {
+            WalkGoal.RemoveWorker(this);
+        }
 		WalkGoal = building;
 		SwitchState (States.WalkingToBuilding);
 	}
