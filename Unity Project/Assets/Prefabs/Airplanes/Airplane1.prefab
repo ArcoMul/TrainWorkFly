@@ -548,7 +548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WorkerItems: []
   State: 1
-  InvestigateDistance: 1
+  InvestigateDistance: 2.5
   Investigated: 0
   Type: 2
   ProgressBar: {fileID: 11400002}
@@ -600,7 +600,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WorkerItems: []
   State: 1
-  InvestigateDistance: 1
+  InvestigateDistance: 2.5
   Investigated: 0
   Type: 0
   ProgressBar: {fileID: 11400008}

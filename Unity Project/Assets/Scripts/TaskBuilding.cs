@@ -10,7 +10,7 @@ public class TaskBuilding : Building
 	public enum States {Idle = 1, Moving = 2}
 	public States State = States.Idle;
 
-    public float InvestigateDistance = 1.0f;
+    public float InvestigateDistance = 2.0f;
     public bool Investigated = false;
 
 	public Skill.Types Type;
@@ -40,8 +40,10 @@ public class TaskBuilding : Building
 	{
         if(!Investigated)
         {
+            Debug.Log("Not investigated distance" + Vector3.Distance(Boss.Instance.transform.position, transform.position) + " distance " + InvestigateDistance);
             if(Vector3.Distance(Boss.Instance.transform.position, transform.position) <= InvestigateDistance)
             {
+                Debug.Log("Boss in distance");
                 transform.FindChild("task-icon").gameObject.SetActive(true);
                 transform.FindChild("questionmark-icon").gameObject.SetActive(false);
                 Investigated = true;
