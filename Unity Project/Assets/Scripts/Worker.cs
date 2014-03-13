@@ -58,6 +58,16 @@ public class Worker : MonoBehaviour
                         return;
                     }
                 }
+
+                LearnBuilding learnbuilding = WalkGoal.GetComponent<LearnBuilding>();
+                if (learnbuilding != null)
+                {
+                    if (learnbuilding.WorkerItems.Count >= 1)
+                    {
+                        SwitchState(States.WalkingToPlayer);
+                        return;
+                    }
+                }
             }
 
 			// Get the direction from the worker to the building and reset the z axis
