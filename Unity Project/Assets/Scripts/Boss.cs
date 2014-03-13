@@ -59,7 +59,6 @@ public class Boss : MonoBehaviour
 
 	public void MakeWorkerJumpToIdle (Worker w)
 	{
-		Workers.Add (w);
 		w.transform.position = GetWorkerIdlePlace(w);
 	}
 }
