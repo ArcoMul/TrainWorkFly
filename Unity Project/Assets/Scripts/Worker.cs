@@ -107,18 +107,11 @@ public class Worker : MonoBehaviour
 		}
 		else if (State == States.WalkingToBuilding)
 		{
-			//WalkGoal.WalkingWorkers++;
-            if (WalkGoal != null)
-            {
-                WalkGoal.RemoveWorker(this);
-            }
+           // What now? Nothing?
 		}
 		else if (State == States.WalkingFromBuilding)
 		{
-			//WalkGoal.WalkingWorkers--;
-            //WalkGoal.RemoveWorker(this);
-			LearnBar.gameObject.SetActive(false);
-           // SwitchState(States.WalkingToPlayer);
+            // Nothing?
 		}
 		else if (State == States.Learning)
 		{
@@ -136,15 +129,20 @@ public class Worker : MonoBehaviour
 
 	public Vector3 GetWalkToPosition (States state) 
 	{
-		Vector3 result = new Vector3(0.0f, 0.0f, 0.0f);
+        Vector3 result = Vector3.zero;
 
 		State = state;
 		if (State == States.Idle){
 			result = SpawnPosition;
 		}else if (State == States.WalkingToBuilding){
-			if(WalkGoal != null){
-				result =  WalkGoal.GetRestPosition ();
-			}
+            if (WalkGoal != null)
+            {
+                result = WalkGoal.GetRestPosition();
+            }
+            else
+            {
+                Debug.LogError("WalkGoal is null, shouldn't happen!");
+            }
 		}else if (State == States.WalkingFromBuilding){
 			result =  SpawnPosition;
 		}else if (State == States.Learning){
@@ -161,6 +159,11 @@ public class Worker : MonoBehaviour
 	 */
 	public void SetGoal (Building building)
 	{
+        // is null first time? - marijn
+        if (WalkGoal != null)
+        {
+            WalkGoal.RemoveWorker(this);
+        }
 		WalkGoal = building;
 		SwitchState (States.WalkingToBuilding);
 	}

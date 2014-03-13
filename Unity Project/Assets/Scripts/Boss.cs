@@ -24,9 +24,6 @@ public class Boss : MonoBehaviour
 
         transform.position += transform.right * Input.GetAxis("Horizontal") * 3 * Time.deltaTime;
         transform.position += transform.up * Input.GetAxis("Vertical") * 3 * Time.deltaTime;
-
-
-
     }
 
 	public void WalkToCurrentMousePosition ()
