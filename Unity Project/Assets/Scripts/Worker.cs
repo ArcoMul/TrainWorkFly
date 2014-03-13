@@ -145,6 +145,14 @@ public class Worker : MonoBehaviour
 		{
 			Boss.Instance.RemoveIdleWorker(this);
 		}
+		// Make sure the extra hard working animator is disabled when switching to not-working
+		else if (State == States.Working && state != States.Working) 
+		{
+			if (this.GetComponent<Animator>() != null) {
+				this.GetComponent<Animator>().enabled = false;
+				// this.GetComponent<Animator>().animation["WorkerAnim"].time = 0;
+			}
+		}
 
 		// Save the new state
 		State = state;
