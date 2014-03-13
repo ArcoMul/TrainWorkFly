@@ -46,6 +46,20 @@ public class Worker : MonoBehaviour
 		// On walking, walk to the goal
 		if (State == States.WalkingToBuilding || State == States.WalkingFromBuilding)
 		{
+            //Checking if the workers walks towards an taskbuilding that is not investigated yet
+            if(State == States.WalkingToBuilding)
+            {
+                TaskBuilding taskbuilding = WalkGoal.GetComponent<TaskBuilding>();
+                if (taskbuilding != null)
+                {
+                    if (!taskbuilding.Investigated)
+                    {
+                        SwitchState(States.WalkingToPlayer);
+                        return;
+                    }
+                }
+            }
+
 			// Get the direction from the worker to the building and reset the z axis
 			Vector3 Direction = GetWalkToPosition(State) - transform.position;
 			Direction = new Vector3(Direction.x, Direction.y, 0);
