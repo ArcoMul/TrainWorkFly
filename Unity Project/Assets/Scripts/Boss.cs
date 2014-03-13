@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Boss : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class Boss : MonoBehaviour
     public Vector3 MoveToPosition;
     public bool Walking = false;
 
+	public Transform[] IdlePositions;
+
+    public List<Worker> Workers;
+	
 	void Update()
     {
 
@@ -30,5 +35,31 @@ public class Boss : MonoBehaviour
 	{
     	MoveToPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0));
 		Walking = true;
+	}
+
+	public Vector3 GetWorkerIdlePlace (Worker w)
+	{
+		int i = 0;
+		foreach (Worker worker in Workers) {
+			if (worker == w) return IdlePositions[i].position;
+			i++;
+		}
+		return IdlePositions[Workers.Count].position;
+	}
+
+	public void AddIdleWorker (Worker w)
+	{
+		Workers.Add (w);
+	}
+
+	public void RemoveIdleWorker (Worker w)
+	{
+		Workers.Remove (w);
+	}
+
+	public void MakeWorkerJumpToIdle (Worker w)
+	{
+		Workers.Add (w);
+		w.transform.position = GetWorkerIdlePlace(w);
 	}
 }
