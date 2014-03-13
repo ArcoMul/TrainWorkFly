@@ -59,7 +59,7 @@ public class Worker : MonoBehaviour
 	void Update ()
 	{
 		// On walking, walk to the goal
-		if (State == States.WalkingToBuilding || State == States.WalkingFromBuilding)
+		if ((State == States.WalkingToBuilding || State == States.WalkingFromBuilding) && WalkGoal != null)
 		{
             //Checking if the workers walks towards an taskbuilding that is not investigated yet
             if(State == States.WalkingToBuilding)

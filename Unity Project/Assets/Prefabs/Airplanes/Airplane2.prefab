@@ -843,7 +843,7 @@ MonoBehaviour:
   Building: {fileID: 0}
   Tasks: []
   TimeSinceSpawn: 0
-  TimeToFinishPlane: 30
+  TimeToFinishPlane: 40
   Incoming: 0
   GoingOut: 0
 --- !u!212 &21200000

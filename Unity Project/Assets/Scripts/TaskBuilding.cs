@@ -114,7 +114,6 @@ public class TaskBuilding : Building
 		}
 		WorkerItems.Clear();
         IsCompleted = true;
-		Score.Instance.Points++;
 
 		Destroy(gameObject);
 	}
