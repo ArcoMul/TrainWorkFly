@@ -34,8 +34,14 @@ public class TaskBuilding : Building
 	{
 		base.Start();
 
-		OriginalInfoText = InfoText.text;
-		InfoText.text = "";
+		if (InfoText != null) {
+			OriginalInfoText = InfoText.text;
+			InfoText.text = "";
+		}
+
+		if (TextCloud != null) {
+			TextCloud.SetActive (false);
+		}
 
 		SpawnTime = DateTime.Now;
 
@@ -50,14 +56,18 @@ public class TaskBuilding : Building
 	{
         if(!Investigated)
         {
-            Debug.Log("Not investigated distance" + Vector3.Distance(Boss.Instance.transform.position, transform.position) + " distance " + InvestigateDistance);
+			Vector2 BossPos = new Vector2(Boss.Instance.transform.position.x, Boss.Instance.transform.position.y);
+			Vector2 Pos = new Vector2(transform.position.x, transform.position.y);
+			Debug.Log("Not investigated distance " + Vector2.Distance(BossPos, Pos) + " Distance " + InvestigateDistance);
             if(Vector3.Distance(Boss.Instance.transform.position, transform.position) <= InvestigateDistance)
             {
-                Debug.Log("Boss in distance");
+				Debug.Log("Boss in distance " + InvestigatedFor + " | " + TimeToInvestigate);
+				TextCloud.SetActive (true);
 				InvestigatedFor += Time.deltaTime;
+				InfoText.text = OriginalInfoText.Substring(0, (int) Mathf.Floor((InvestigatedFor / TimeToInvestigate) * OriginalInfoText.Length));
 				if (InvestigatedFor >= TimeToInvestigate)
 				{
-					InfoText.text = OriginalInfoText.Substring((int) Mathf.Floor((InvestigatedFor / TimeToInvestigate) * OriginalInfoText.Length));
+					TextCloud.SetActive (false);
 	                transform.FindChild("task-icon").gameObject.SetActive(true);
 	                transform.FindChild("questionmark-icon").gameObject.SetActive(false);
 	                Investigated = true;
