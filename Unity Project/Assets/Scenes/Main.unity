@@ -455,11 +455,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   State: 1
   IsWorkingExtraHard: 0
-  PaintText: {fileID: 0}
-  RepairText: {fileID: 0}
   PaintSkill: 0
   RepairSkill: 0
-  IdlePosition: {fileID: 191670723}
 --- !u!212 &309105135
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1841,11 +1838,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   State: 1
   IsWorkingExtraHard: 0
-  PaintText: {fileID: 0}
-  RepairText: {fileID: 0}
   PaintSkill: 0
   RepairSkill: 0
-  IdlePosition: {fileID: 404309669}
 --- !u!95 &1052444126
 Animator:
   serializedVersion: 2
@@ -2377,11 +2371,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   State: 1
   IsWorkingExtraHard: 0
-  PaintText: {fileID: 0}
-  RepairText: {fileID: 0}
   PaintSkill: 0
   RepairSkill: 0
-  IdlePosition: {fileID: 1370780529}
 --- !u!212 &1334248800
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2917,11 +2908,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   State: 1
   IsWorkingExtraHard: 0
-  PaintText: {fileID: 0}
-  RepairText: {fileID: 0}
   PaintSkill: 0
   RepairSkill: 0
-  IdlePosition: {fileID: 734995933}
 --- !u!212 &1728476735
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3114,11 +3102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   State: 1
   IsWorkingExtraHard: 0
-  PaintText: {fileID: 0}
-  RepairText: {fileID: 0}
   PaintSkill: 0
   RepairSkill: 0
-  IdlePosition: {fileID: 729937264}
 --- !u!212 &1925699734
 SpriteRenderer:
   m_ObjectHideFlags: 0

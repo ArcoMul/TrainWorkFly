@@ -26,16 +26,10 @@ public class Worker : MonoBehaviour
 	private Vector3 WalkToPosition;
 	private Vector3 SpawnPosition;
 
-
-	public TextMesh PaintText;
-	public TextMesh RepairText;
-
 	public int PaintSkill;
 	public int RepairSkill;
 
 	public Skill[] Skills = new Skill[2];
-
-	public Transform IdlePosition;
 
 	void Start ()
 	{
@@ -204,13 +198,6 @@ public class Worker : MonoBehaviour
 			Skills[0] = new Skill (Type);
 		} else {
 			Skills[1] = new Skill (Type);
-		}
-
-		if (Skills[0] != null) {
-			PaintText.text = Skills[0].Type.ToString() + ": " + (Skills[0].Level - 1);
-		}
-		if (Skills[1] != null) {
-			RepairText.text = Skills[1].Type.ToString() + ": " + (Skills[1].Level - 1);
 		}
 	}
 
