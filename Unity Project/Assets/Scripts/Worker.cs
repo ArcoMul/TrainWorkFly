@@ -36,12 +36,14 @@ public class Worker : MonoBehaviour
 
 	public Skill[] Skills = new Skill[2];
 
+	public Transform IdlePosition;
+
 	void Start ()
 	{
 		SpawnPosition = transform.position;
 
 		// We start in Idle
-		SwitchState (States.Idle);
+		Boss.Instance.MakeWorkerJumpToIdle(this);
 		LearnBar.gameObject.SetActive(false);
 	}
 
@@ -72,16 +74,21 @@ public class Worker : MonoBehaviour
 				}
 			}
         }
-        else if (State == States.WalkingToPlayer)
+		else if (State == States.WalkingToPlayer || State == States.Idle)
         {
-            if(Vector3.Distance(Boss.Instance.transform.position, this.transform.position) > 0.4f){
-                Vector3 Direction = Boss.Instance.transform.position - transform.position;
+			if (Vector3.Distance(Boss.Instance.GetWorkerIdlePlace(this), transform.position) > 0.1f)
+			{
+				Vector3 Direction = Boss.Instance.GetWorkerIdlePlace(this) - transform.position;
                 Direction = new Vector3(Direction.x, Direction.y, 0);
 
                 // Calculate the movement for this frame and add this to the position
                 Vector3 Movement = Direction.normalized * Time.deltaTime * 2;
                 transform.position += Movement;
             }
+			else if (State != States.Idle)
+			{
+            	SwitchState(States.Idle);
+			}
         }
         else if (State == States.Working)
         {
@@ -100,14 +107,21 @@ public class Worker : MonoBehaviour
 	 */
 	public void SwitchState (States state) 
 	{
+		// Check if we switch from idle to something else
+		if (State == States.Idle && state != States.Idle)
+		{
+			Boss.Instance.RemoveIdleWorker(this);
+		}
+
+		// Save the new state
 		State = state;
+
 		if (State == States.Idle)
 		{
-            return;
+			Boss.Instance.AddIdleWorker(this);
 		}
 		else if (State == States.WalkingToBuilding)
 		{
-			//WalkGoal.WalkingWorkers++;
             if (WalkGoal != null)
             {
                 WalkGoal.RemoveWorker(this);
@@ -115,10 +129,7 @@ public class Worker : MonoBehaviour
 		}
 		else if (State == States.WalkingFromBuilding)
 		{
-			//WalkGoal.WalkingWorkers--;
-            //WalkGoal.RemoveWorker(this);
 			LearnBar.gameObject.SetActive(false);
-           // SwitchState(States.WalkingToPlayer);
 		}
 		else if (State == States.Learning)
 		{
@@ -130,7 +141,7 @@ public class Worker : MonoBehaviour
 		}
         else if (State == States.WalkingToPlayer)
         {
-            return;
+
         }
     }
 

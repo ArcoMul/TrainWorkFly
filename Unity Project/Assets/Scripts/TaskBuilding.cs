@@ -68,7 +68,7 @@ public class TaskBuilding : Building
 	private void FinishTask ()
 	{
 		foreach (WorkerItem w in WorkerItems) {
-			w.Worker.SwitchState(Worker.States.WalkingFromBuilding);
+			w.Worker.SwitchState(Worker.States.WalkingToPlayer);
 		}
 		WorkerItems.Clear();
         IsCompleted = true;

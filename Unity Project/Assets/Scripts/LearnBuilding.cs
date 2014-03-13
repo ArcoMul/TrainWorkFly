@@ -24,7 +24,7 @@ public class LearnBuilding : Building
 
 			if(time >= timetolearn)
 			{
-				w.SwitchState(Worker.States.WalkingFromBuilding);
+				w.SwitchState(Worker.States.WalkingToPlayer);
 				w.AddLevel (Type);
 				CircleBar.SetPercentage(0);
 				removedindexes.Add(index);
